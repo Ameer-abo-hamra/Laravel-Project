@@ -22,6 +22,7 @@ class AdminController extends Controller
     // im use github
     // also me using github
     // here we are updating from main
+    // we dont know whats new
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(), [
