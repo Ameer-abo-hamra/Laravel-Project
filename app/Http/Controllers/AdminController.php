@@ -20,6 +20,7 @@ class AdminController extends Controller
     use ResponseTrait;
 
     // im use github
+    // also me using github
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(), [
