@@ -21,6 +21,7 @@ class AdminController extends Controller
 
     // im use github
     // also me using github
+    // here we are updating from the repo
     // here we are updating from hadeel
     public function store(Request $request)
     {
