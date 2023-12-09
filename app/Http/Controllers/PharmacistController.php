@@ -24,15 +24,15 @@ class PharmacistController extends Controller
     {
         $validator = Validator::make($request->all(), [
 
-            'username' => "unique:pharmacists,username|| required||min:4||max:10",
-            "password" => "required||unique:pharmacists,password||min:10||max:10",
+            "phone" => "unique:pharmacists,phone|required|numeric|min:10",
+            "password" => "required|min:6|max:15"
         ]);
         if ($validator->fails()) {
             return $this->returnError(400, $validator->errors()->first());
         }
 
         $user = Pharmacist::create([
-            "username" => $request->username,
+            "phone" => $request->phone,
             "password" => Hash::make($request->password),
         ]);
 
@@ -43,15 +43,15 @@ class PharmacistController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => "required||min:4||max:10",
-            "password" => "required||min:10||max:10",
+            'phone' => "required||min:10||max:10|numeric",
+            "password" => "required||min:6||max:15",
         ]);
 
         if ($validator->fails()) {
             return $this->returnError(400, $validator->errors()->first());
         }
 
-        $credentials = $request->only("username", "password");
+        $credentials = $request->only("phone", "password");
         $token = Auth::guard("api")->attempt($credentials);
         // return response($token);
         if ($token) {

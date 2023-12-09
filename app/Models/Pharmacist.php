@@ -16,7 +16,7 @@ class Pharmacist extends Authenticatable implements JWTSubject
 
     protected $guard_name = 'api';
     protected $table = "pharmacists";
-    protected $fillable = ["username", "password"];
+    protected $fillable = ["phone", "password"];
     protected $hidden = ["created_at", "updated_at", "id"];
 
     public function orders()
