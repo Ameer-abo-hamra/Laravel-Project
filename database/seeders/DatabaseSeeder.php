@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(RolesAndPermissionsSeeder::class);
         // $this->call(AdminsSeeder::class);
 
-     $admin= Admin::create([
+        $admin = Admin::create([
 
             "username" => "Ameer",
             "password" => Hash::make("123456"),

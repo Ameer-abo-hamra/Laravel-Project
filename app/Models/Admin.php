@@ -8,7 +8,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Model
 {
-    use HasFactory, HasRoles;
+    use HasFactory;
     protected $guard_name = "web";
     protected $fillable = ['username', 'password'];
 }
