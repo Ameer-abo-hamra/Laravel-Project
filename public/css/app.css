@@ -1,0 +1,27 @@
+.b {
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin-bottom: 10px;
+}
+
+
+.a {
+
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 0 10px;
+    padding: 10px;
+}
+
+.a>input[type = "number"]
+{
+    border: none;
+    border-radius: 5px;
+    /* text-align: center; */
+}
+.a>input::placeholder{
+    /* border: none;
+    border-radius: 5px; */
+    text-align: center;
+}
