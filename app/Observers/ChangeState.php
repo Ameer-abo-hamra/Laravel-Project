@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Medicine;
 use App\Models\Order;
 use App\Models\Pharmacist;
+use DB;
 
 class ChangeState
 {
@@ -23,6 +24,7 @@ class ChangeState
     {
 
         $isModified = $order->isStateModified;
+        echo $isModified;
         if (!$isModified && $order->state == "مستلمة") {
 
             Order::find($order->id)->update([
@@ -31,38 +33,19 @@ class ChangeState
             ]);
 
             $specificOrder = Order::find($order->id);
-            $medicine = Medicine::where("s_name", $order->s_name)->first();
-            $new = $medicine->amount - $specificOrder->amount;
-            $medicine->update([
+            $orders = DB::table('_order__medicine')->where("order_id", $order->id)->get();
+            foreach ($orders as $order) {
+                $newAmuont = Medicine::find($order->medicine_id)->amount - $order->amount;
+                Medicine::find($order->medicine_id)->update([
+                    "amount" => $newAmuont
+                ]);
 
-                "amount" => $new,
-            ]);
+            }
         }
 
 
     }
-    //     public function updated(Order $order): void
-// {
-//     if ($order->state == "مستلمة") {
-//         try {
-//             $specificOrder = Order::findOrFail($order->id);
-//             $medicine = Medicine::where("s_name", $order->s_name)->firstOrFail();
 
-    //             $new = $medicine->amount - $specificOrder->amount;
-
-    //             // تحديث كمية الدواء مباشرة
-//             $medicine->update([
-//                 "amount" => $new,
-//             ]);
-
-    //             // تسجيل رسالة
-//             \Log::info("تم تحديث كمية الدواء بنجاح.");
-//         } catch (\Exception $e) {
-//             // يمكنك تسجيل رسالة خطأ أو اتخاذ إجراء آخر هنا
-//             \Log::error("حدث خطأ: " . $e->getMessage());
-//         }
-//     }
-// }
 
 
     /**

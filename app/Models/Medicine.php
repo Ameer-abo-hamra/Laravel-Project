@@ -11,7 +11,7 @@ class Medicine extends Model
 
     protected $fillable = ["s_name", "t_name", "category", "company", "amount", "end_date", "price"];
 
-    protected $hidden = ["created_at", "updated_at", "id"];
+    protected $hidden = ["created_at", "updated_at", "id",];
 
     public function orders()
     {

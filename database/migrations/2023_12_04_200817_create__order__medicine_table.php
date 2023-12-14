@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->foreignId("order_id")->references("id")->on("orders");
             $table->foreignId("medicine_id")->references("id")->on("medicines");
+            $table->unsignedFloat("price");
+            $table->unsignedInteger("amount");
             $table->timestamps();
         });
     }
