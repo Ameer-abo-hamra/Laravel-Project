@@ -14,7 +14,7 @@ trait ResponseTrait
         ]);
 
     }
-    public function returnSuccess($succesNumber = 200,$msgSuccess = "")
+    public function returnSuccess($msgSuccess = "", $succesNumber = 200)
     {
 
         return response()->json([
