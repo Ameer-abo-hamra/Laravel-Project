@@ -28,7 +28,7 @@ class PharmacistController extends Controller
             "password" => "required|min:6|max:15",
         ]);
         if ($validator->fails()) {
-            return $this->returnError(400, $validator->errors()->first());
+            return $this->returnError( $validator->errors()->first(),400);
         }
 
         $user = Pharmacist::create([
@@ -48,7 +48,7 @@ class PharmacistController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->returnError(400, $validator->errors()->first());
+            return $this->returnError( $validator->errors()->first(),400);
         }
 
         $credentials = $request->only("phone", "password");
@@ -95,6 +95,7 @@ class PharmacistController extends Controller
         }
         return $this->returnData("this is your product", "medicine", $med);
     }
+
 
     public function showdetails($id)
     {

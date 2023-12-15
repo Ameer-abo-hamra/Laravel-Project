@@ -4,23 +4,23 @@ namespace App\Traits;
 trait ResponseTrait
 {
 
-    public function returnError($msgErorr = "", $errorNumber = "400")
+    public function returnError($msgErorr = "", $errorNumber = 400)
     {
 
         return response()->json([
             "status" => false,
             "message" => $msgErorr,
-            "errorNumber" => $errorNumber
+            "statusNumber" => $errorNumber
         ]);
 
     }
-    public function returnSuccess($msgSuccess = "", $succesNumber = "200")
+    public function returnSuccess($succesNumber = 200,$msgSuccess = "")
     {
 
         return response()->json([
             "status" => true,
             "message" => $msgSuccess,
-            "successNumber" => $succesNumber
+            "statusNumber" => $succesNumber
         ]);
 
     }
@@ -30,7 +30,7 @@ trait ResponseTrait
         return response()->json([
             "status" => true,
             "message" => $msgData,
-            "responseNumber" => $responseNumber,
+            "statusNumber" => $responseNumber,
             "$key" => $data,
         ]);
 
