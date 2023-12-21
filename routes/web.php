@@ -17,7 +17,7 @@ use App\Models\Order;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::post('login' , [AdminController::class , "login"]);
 Route::post("search", [AdminController::class, "search"]);
 
 Route::post('add', [AdminController::class, "store"]);
@@ -30,7 +30,7 @@ Route::post("changestate", [AdminController::class, 'changeState']);
 Route::get("test", function () {
 
 
-    return view("pushToken");
+    return view("regAdmin");
 });
 
 

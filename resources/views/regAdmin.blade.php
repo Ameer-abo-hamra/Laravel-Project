@@ -10,10 +10,10 @@
 
 <body>
 
-    <form action="{{route("reg")}}" method="Post">
+    <form action="{{route("rrr")}}" method="Post">
     @csrf
 
-        <input type="text" placeholder="name" name="username">
+        <input type="text" placeholder="phone" name="phone">
         <input type="password" placeholder="password" name="password">
         <input type="submit">
 

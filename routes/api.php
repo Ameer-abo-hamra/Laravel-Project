@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\OrderController;
 
-Route::post("register", [PharmacistController::class, "register"]);
+Route::post("register", [PharmacistController::class, "register"])->name("rrr");
 
 Route::post("login", [PharmacistController::class, "login"]);
 
@@ -24,9 +24,20 @@ Route::group(["middleware" => ["role:user,api"]], function () {
     Route::get("getorders/{pharmacist_id}", [PharmacistController::class, "getOrders"]);
 });
 
+Route::group(["middleware" => ["role:admin,web"] ], function () {
 
 
-Route::post('add', [AdminController::class, "store"]);
 
-Route::post('update', [AdminController::class, "update"]);
+    Route::post('add', [AdminController::class, "store"]);
+
+    Route::post('update', [AdminController::class, "update"]);
+
+});
+
+
+Route::get("test" , function () {
+
+    return view("regAdmin");
+});
+Route::post('loginn' , [AdminController::class , "login"]);
 

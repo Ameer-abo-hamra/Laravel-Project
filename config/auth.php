@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
         ],
         'api' => [
             'driver' => 'jwt',
@@ -74,7 +74,7 @@ return [
             'model' => App\Models\Pharmacist::class,
         ],
 
-        "admin" => [
+        "admins" => [
             "driver" => "eloquent",
             "model" => App\Models\Admin::class,
 

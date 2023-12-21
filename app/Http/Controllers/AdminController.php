@@ -1,16 +1,12 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use App\Models\Order;
 use App\Traits\GeneralTrait;
 use App\Traits\ResponseTrait;
-use Exception;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Cast\Double;
-use Spatie\Permission\Traits\HasRoles;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Medicine;
 use DB;
 
@@ -19,10 +15,31 @@ class AdminController extends Controller
     use GeneralTrait;
     use ResponseTrait;
 
-  
-    // also me using github
-    // here we are updating from main
-    // we dont know whats new
+
+    public function login(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+
+            "username" => "required || string",
+            "password" => "required || min:6 || max:12"
+
+        ]);
+
+        if ($validator->fails()) {
+            return $this->returnError($validator->errors()->first());
+        }
+        $cre = $request->only("username", "password");
+        if (Auth::guard('web')->attempt($cre)) {
+
+            $admin =  Auth::guard('web')->user();
+
+            $token = $admin->createToken('web')->plainTextToken;
+            return $token;
+        }
+
+
+    }
     public function store(Request $request)
     {
         $validator = Validator::make(request()->all(), [
@@ -92,35 +109,5 @@ class AdminController extends Controller
 
 
 
-    public function sub(Request $request)
-    {
 
-
-        // return count($request->quan);
-        $medicines = $request->medicine_Ids;
-        $quan = $request->quan;
-
-
-        for ($i = 0; $i < count($medicines); $i++) {
-            $med = Medicine::find($medicines[$i]);
-            //   return   gettype($quan[$i]);
-            // Order::create([
-
-            //     "s_name" => $med->s_name,
-            //     "amount" => $quan[$i],
-            //     "price" => $med->price * $quan[$i],
-            //     "pharmacist_id" => "1",
-            //     "medicine_id"=>intval($medicines[$i])
-            // ]);
-                $order = new Order();
-
-                $order->pharmacist_id = 1 ;
-                $order->id = 2;
-                $order->medicine()->attach();
-                // $order->medicines()->attach($medicines, ['quantity' => $quantities]);
-
-        }
-
-
-    }
 }

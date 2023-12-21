@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId("pharmacist_id")->references("id")->on("pharmacists");
-             $table->string("state")->default("قيد المعالجة");
+            $table->string("state")->default("قيد المعالجة");
             $table->string("payed")->default('لم يتم الدفع بعد ');
             $table->unsignedFloat("price");
             $table->boolean("isStateModified")->default(0);

@@ -68,9 +68,8 @@ class PharmacistController extends Controller
     public function logout(Request $request)
     {
 
-        Auth::guard("api")->logout();
-        JWTAuth::invalidate();
-
+      $token= $request->bearerToken();
+        JWTAuth::setToken($token)->invalidate();
         return $this->returnSuccess('you are logged-out successfully ');
     }
 
