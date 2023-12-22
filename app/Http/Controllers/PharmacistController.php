@@ -77,10 +77,10 @@ class PharmacistController extends Controller
     public function getmedicine()
     {
 
-        $medicinesGroupedByCategory = Medicine::select("s_name", "price", "category")->get()->groupBy("category");
+        $medicinesGroupedByCategory = Medicine::select("s_name", "price", "category" ,"id")->get()->groupBy("category");
 
         if (count($medicinesGroupedByCategory) != 0) {
-            return $this->returnData("done", "categories", $medicinesGroupedByCategory);
+            return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
         }
         return $this->returnError("there are no categories until now");
     }

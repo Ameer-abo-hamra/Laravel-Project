@@ -106,8 +106,4 @@ class AdminController extends Controller
 
         return $this->returnError("there are a few errors ");
     }
-
-
-
-
 }
