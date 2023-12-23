@@ -77,7 +77,7 @@ class PharmacistController extends Controller
     public function getmedicine()
     {
 
-        $medicinesGroupedByCategory = Medicine::select("s_name", "price", "category" ,"id")->get()->groupBy("category");
+        $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
 
         if (count($medicinesGroupedByCategory) != 0) {
             return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
