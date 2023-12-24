@@ -24,11 +24,4 @@ Route::group(["middleware" => ["role:user,api"]], function () {
     Route::get("getorders/{pharmacist_id}", [PharmacistController::class, "getOrders"]);
 });
 
-    Route::post('add', [AdminController::class, "store"]);
-
-    Route::post('update', [AdminController::class, "update"]);
-
-
-
-Route::post('loginn' , [AdminController::class , "login"]);
 

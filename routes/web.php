@@ -20,15 +20,12 @@ use App\Models\Order;
 |
 */
 
-Route::get("go-login", function () {
-    return view('loginAdmin');
-});
 Route::post('login', [AdminController::class, "login"])->name("login");
 
 Route::group(['middleware' => ["role:admin,web"]], function () {
 
 
-    Route::get("logout" , [AdminController::class , "logout"]);
+    Route::get("logout", [AdminController::class, "logout"]);
 
     Route::post("search", [MedicineController::class, "search"]);
 
