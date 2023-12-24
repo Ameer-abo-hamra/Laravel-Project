@@ -16,6 +16,7 @@ class OrderController extends Controller
 {
 
     use ResponseTrait;
+
     public function addOrder(Request $request)
     {
         $amounts = array_filter($request->quan);
@@ -47,4 +48,13 @@ class OrderController extends Controller
         return $this->returnSuccess("your order is saved");
         // return $order;
     }
+    public function getOrders()
+    {
+
+        $orders = Order::get();
+        return $this->returnData("done", "orders", $orders->makeHidden("isStateModified"));
+    }
+
+
+
 }

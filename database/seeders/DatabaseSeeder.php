@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $admin = Admin::create([
 
             "username" => "Ameer",
-            "password" => Hash::make("123456"),
+            "password" => Hash::make("123456789"),
         ]);
         $admin->assignRole("admin");
     }

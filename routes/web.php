@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\OrderController;
 use App\Models\Medicine;
 use Faker\Provider\Medical;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PharmacistController;
 use App\Models\Order;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,32 +19,29 @@ use App\Models\Order;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::post('login' , [AdminController::class , "login"]);
-Route::post("search", [AdminController::class, "search"]);
 
-Route::post('add', [AdminController::class, "store"]);
+Route::get("go-login", function () {
+    return view('loginAdmin');
+});
+Route::post('login', [AdminController::class, "login"])->name("login");
 
-Route::get("getorders", [AdminController::class, "getOrders"]);
-
-Route::post("changestate", [AdminController::class, 'changeState']);
-
-
-Route::get("test", function () {
+Route::group(['middleware' => ["role:admin,web"]], function () {
 
 
-    return view("regAdmin");
+    Route::get("logout" , [AdminController::class , "logout"]);
+
+    Route::post("search", [MedicineController::class, "search"]);
+
+    Route::post('add-medicine', [MedicineController::class, "store"]);
+
+    Route::get("getorders", [OrderController::class, "getOrders"]);
+
+    Route::post("changestate", [AdminController::class, 'changeState']);
+
 });
 
 
-Route::post('test', [AdminController::class, 'showAndChange'])->name('test');
-
-Route::get("gett", [PharmacistController::class, "getPhar"]);
 
 
 
-Route::get("or", function () {
-    $med = Medicine::get();
-    return view("order",compact('med'));
-});
 
-Route::post("rtt", [OrderController::Class, 'addOrder'])->name("sub");

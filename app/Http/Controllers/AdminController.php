@@ -21,60 +21,36 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), [
 
-            "username" => "required || string",
-            "password" => "required || min:6 || max:12"
+            "username" => "required",
+            "password" => "required | min:8 | max:15"
 
         ]);
 
         if ($validator->fails()) {
-            return $this->returnError($validator->errors()->first());
+            return redirect()
+                ->back()
+                ->withErrors($validator);
+
         }
         $cre = $request->only("username", "password");
         if (Auth::guard('web')->attempt($cre)) {
 
-            $admin =  Auth::guard('web')->user();
+            $admin = Auth::guard('web')->user();
 
-            $token = $admin->createToken('web')->plainTextToken;
-            return $token;
+            return $this->returnSuccess("you are logged-in successfully :)");
         }
+
+        return $this->returnError("your data is invalid");
 
 
     }
-    public function store(Request $request)
-    {
-        $validator = Validator::make(request()->all(), [
-            "s_name" => "required||unique:medicines,s_name,except,id||max:10",
-            "t_name" => "required||unique:medicines,t_name||max:10",
-            "category" => "required||:medicines||max:10",
-            "company" => "required||max:10",
-            "amount" => "required||max:10",
-            "end_date" => "required||max:15",
-            "price" => "required||max:10",
-        ]);
-
-        if ($validator->fails()) {
-            return $this->returnError($validator->errors()->first());
-        }
-
-        $this->addMedicine($request->all());
 
 
-        return $this->returnSuccess('your data is saved');
-    }
-    public function search(Request $request)
+    public function logout()
     {
 
-        $med = Medicine::where("category", $request->value)->orWhere("s_name", $request->value)->get();
-        if (count($med) == 0) {
-            return $this->returnError("this medicine does not exist");
-        }
-        return $this->returnData("this is your product", "medicine", $med);
-    }
-    public function getOrders()
-    {
-
-        $orders = Order::get();
-        return $this->returnData("done", "orders", $orders->makeHidden("isStateModified"));
+        Auth::guard("web")->logout();
+        return $this->returnSuccess("you are logged-out successfully :(");
     }
 
 

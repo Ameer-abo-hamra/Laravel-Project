@@ -9,16 +9,17 @@
 </head>
 
 <body>
+    <form action="{{ route('login') }}" method="Post">
+        @csrf
 
-    <form action="{{route("llogin")}}" method="Post">
-    @csrf
-
-        <input type="text" placeholder="name" name="username">
+        <input type="text" placeholder="name" name="username"><br><br>
+        @error('username')
+            <div> {{ $message }}</div>
+        @enderror
         <input type="password" placeholder="password" name="password">
+
         <input type="submit">
-
-
-        </form>
+    </form>
 </body>
 
 </html>
