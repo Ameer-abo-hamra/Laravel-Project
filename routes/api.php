@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\PharmacistController;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MedicineController;
 
 use App\Http\Controllers\OrderController;
 
@@ -22,6 +22,10 @@ Route::group(["middleware" => ["role:user,api"]], function () {
     Route::post("order", [OrderController::class, "addOrder"]);
 
     Route::get("getorders/{pharmacist_id}", [PharmacistController::class, "getOrders"]);
+
+    Route::post("add-to-favorite" , [PharmacistController::class , "addToFvorite"]);
+
 });
 
+Route::post('add-medicine', [MedicineController::class, "store"]);
 

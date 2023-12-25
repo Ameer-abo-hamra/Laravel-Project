@@ -8,6 +8,7 @@ use App\Models\Pharmacist;
 use App\Traits\ResponseTrait;
 use Exception;
 use GuzzleHttp\ClientTrait;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ class PharmacistController extends Controller
             "password" => "required|min:6|max:15",
         ]);
         if ($validator->fails()) {
-            return $this->returnError( $validator->errors()->first(),400);
+            return $this->returnError($validator->errors()->first(), 400);
         }
 
         $user = Pharmacist::create([
@@ -48,7 +49,7 @@ class PharmacistController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->returnError( $validator->errors()->first(),400);
+            return $this->returnError($validator->errors()->first(), 400);
         }
 
         $credentials = $request->only("phone", "password");
@@ -68,7 +69,7 @@ class PharmacistController extends Controller
     public function logout(Request $request)
     {
 
-      $token= $request->bearerToken();
+        $token = $request->bearerToken();
         JWTAuth::setToken($token)->invalidate();
         return $this->returnSuccess('you are logged-out successfully ');
     }
@@ -108,8 +109,25 @@ class PharmacistController extends Controller
     public function getOrders($id)
     {
         $orders = Order::where("pharmacist_id", $id)->get();
-        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified" , "pharmacist_id"]));
+        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified", "pharmacist_id"]));
     }
 
-
+    public function addToFvorite(Request $request)
+    {
+/*!$phar->medicines()->where("medicine_id", "$request->medId")->exists() */
+        $med = Medicine::find($request->medId);
+        $phar = Pharmacist::find($request->pharId);
+        if ($med && $phar) {
+            $medIds = $phar->medicines()->pluck("medicine_id")->toArray();
+            if (!in_array($request->medId,$medIds)) {
+                $phar->medicines()->attach($med, [
+                    "created_at" => Carbon::now(),
+                    "updated_at" => Carbon::now()
+                ]);
+                return $this->returnSuccess("done");
+            }
+            return $this->returnError("this medicine is already added to your favorite");
+        }
+        return $this->returnError('there are some thing wrong :(');
+    }
 }

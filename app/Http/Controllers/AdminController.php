@@ -27,10 +27,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator);
-
+            return $this->returnError($validator->errors()->first());
         }
         $cre = $request->only("username", "password");
         if (Auth::guard('web')->attempt($cre)) {

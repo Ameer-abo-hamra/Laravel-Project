@@ -18,4 +18,8 @@ class Medicine extends Model
         return $this->belongsToMany(Order::class, "_order__medicine");
     }
 
+    public function pharmacists() {
+        return $this->belongsToMany(Pharmacist::class , "med_phar");
+    }
+
 }

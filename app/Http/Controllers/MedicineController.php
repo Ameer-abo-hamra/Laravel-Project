@@ -26,7 +26,7 @@ class MedicineController extends Controller
         $validator = validator::make($request->all(), [
 
             "s_name" => "unique:medicines|required",
-            "t_name" => "unique:medications| required",
+            "t_name" => "unique:medicines| required",
             "category" => "required",
             "company" => "required",
             "amount" => "required | numeric |integer",

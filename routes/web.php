@@ -8,6 +8,7 @@ use Faker\Provider\Medical;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PharmacistController;
 use App\Models\Order;
+use App\Traits\ResponseTrait;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,12 @@ use App\Models\Order;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get("csrf_token", function () {
+    return response()->json([
+        'csrf_token' => csrf_token()
+    ]);
 
+});
 Route::post('login', [AdminController::class, "login"])->name("login");
 
 Route::group(['middleware' => ["role:admin,web"]], function () {
@@ -34,6 +40,7 @@ Route::group(['middleware' => ["role:admin,web"]], function () {
     Route::get("getorders", [OrderController::class, "getOrders"]);
 
     Route::post("changestate", [AdminController::class, 'changeState']);
+
 
 });
 

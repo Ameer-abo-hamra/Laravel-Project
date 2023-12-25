@@ -23,6 +23,12 @@ class Pharmacist extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Order::class, "pharmacist_id");
     }
+
+
+    public function medicines() {
+
+        return $this->belongsToMany(Medicine::class , "med_phar");
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();
