@@ -20,7 +20,7 @@ use App\Traits\ResponseTrait;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get("csrf_token", function () {
+Route::get("csrf-token", function () {
     return response()->json([
         'csrf_token' => csrf_token()
     ]);
