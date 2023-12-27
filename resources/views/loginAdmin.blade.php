@@ -10,7 +10,7 @@
 
 <body>
     <form action="{{ route('login') }}" method="Post">
-
+        @csrf
         <input type="text" placeholder="name" name="username"><br><br>
         @error('username')
             <div> {{ $message }}</div>

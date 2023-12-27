@@ -35,7 +35,7 @@ Route::get("go-login", function () {
 });
 Route::post('login', [AdminController::class, "login"])->name("login");
 
-Route::group(['middleware' => ["role:admin,web"]], function () {
+Route::group(['middleware' => "checkSession"], function () {
 
 
     Route::get("logout", [AdminController::class, "logout"]);
