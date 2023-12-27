@@ -29,10 +29,12 @@ Route::group(["middleware" => ["role:user,api"]], function () {
 
 });
 
-Route::post('add-medicine', [MedicineController::class, "store"]);
 
 
 Route::group(["prefix" => "web"], function () {
+
+    Route::post('add-medicine', [MedicineController::class, "store"]);
+
     Route::post('login', [AdminController::class, "login"])->name("login");
 
     Route::group(['middleware' => ["role:admin,web"]], function () {
