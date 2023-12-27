@@ -14,7 +14,7 @@ class ChangeState
      */
     public function created(Order $order): void
     {
-        //
+
     }
 
     /**

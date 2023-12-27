@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Notifications\CustomNotification;
 use App\Traits\GeneralTrait;
 use App\Traits\ResponseTrait;
 use Illuminate\Http\Request;
@@ -36,7 +37,6 @@ class AdminController extends Controller
 
             return $this->returnSuccess("you are logged-in successfully :)");
         }
-
         return $this->returnError("your data is invalid");
 
 
@@ -53,7 +53,7 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-        $order = Order::findOrFail($request->id);
+     $order = Order::findOrFail($request->id);
 
         if ($request->has(["payed", "state"])) {
             $order->update([

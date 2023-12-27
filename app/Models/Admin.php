@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 class Admin  extends Authenticatable
 {
-    use HasFactory , HasRoles,HasApiTokens;
+    use HasFactory , HasRoles,HasApiTokens, Notifiable;
     protected $guard_name = "web";
     protected $fillable = ['username', 'password'];
 

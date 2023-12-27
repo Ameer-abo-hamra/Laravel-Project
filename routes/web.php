@@ -39,7 +39,7 @@ Route::group(['middleware' => ["role:admin,web"]], function () {
 
     Route::get("getorders", [OrderController::class, "getOrders"]);
 
-    Route::post("changestate", [AdminController::class, 'changeState']);
+    Route::post("changestate", [AdminController::class, 'update']);
 
 
 });
