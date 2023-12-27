@@ -26,6 +26,12 @@ Route::get("csrf-token", function () {
     ]);
 
 });
+
+Route::get("go-login", function () {
+
+
+    return view("loginAdmin");
+});
 Route::post('login', [AdminController::class, "login"])->name("login");
 
 Route::group(['middleware' => ["role:admin,web"]], function () {
