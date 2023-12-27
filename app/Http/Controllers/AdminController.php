@@ -34,7 +34,7 @@ class AdminController extends Controller
         if (Auth::guard('web')->attempt($cre)) {
 
             $admin = Auth::guard('web')->user();
-
+            session(['admin_data' . $admin->id => $admin->toArray()]);
             return $this->returnSuccess("you are logged-in successfully :)");
         }
         return $this->returnError("your data is invalid");
@@ -46,14 +46,16 @@ class AdminController extends Controller
     public function logout()
     {
 
-        Auth::guard("web")->logout();
+        $admin = Auth::guard("web")->user();
+        $admin->logout();
+        session()->forget('admin' . $admin->id);
         return $this->returnSuccess("you are logged-out successfully :(");
     }
 
 
     public function update(Request $request)
     {
-     $order = Order::findOrFail($request->id);
+        $order = Order::findOrFail($request->id);
 
         if ($request->has(["payed", "state"])) {
             $order->update([

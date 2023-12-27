@@ -22,7 +22,8 @@ use App\Traits\ResponseTrait;
 */
 Route::get("csrf-token", function () {
     return response()->json([
-        'csrf_token' => csrf_token()
+        'csrf_token' => csrf_token(),
+        'yousef_session' => Session::getId()
     ]);
 
 });
