@@ -20,10 +20,10 @@ class CheckSession
     {
         if (Auth::guard("web")->user()) {
 
-            if ($request->session()->has('admin_data' . Auth::guard("web")->user()->id)) {
+            // if ($request->session()->has('admin_data' . Auth::guard("web")->user()->id)) {
 
                 return $next($request);
-            }
+            // }
         }
         return $this->returnError("you are unauthorized");
     }

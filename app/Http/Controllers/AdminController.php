@@ -33,8 +33,8 @@ class AdminController extends Controller
         $cre = $request->only("username", "password");
         if (Auth::guard('web')->attempt($cre)) {
 
-            $admin = Auth::guard('web')->user();
-            session(['admin_data' . $admin->id => $admin->toArray()]);
+            // $admin = Auth::guard('web')->user();
+            // session(['admin_data' . $admin->id => $admin->toArray()]);
             return $this->returnSuccess("you are logged-in successfully :)");
         }
         return $this->returnError("your data is invalid");
@@ -48,7 +48,7 @@ class AdminController extends Controller
 
         $admin = Auth::guard("web")->user();
        Auth("web")->logout();
-        session()->forget('admin' . $admin->id);
+        // session()->forget('admin' . $admin->id);
         return $this->returnSuccess("you are logged-out successfully :(");
     }
 
