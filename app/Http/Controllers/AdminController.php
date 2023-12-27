@@ -47,7 +47,7 @@ class AdminController extends Controller
     {
 
         $admin = Auth::guard("web")->user();
-        $admin->logout();
+       Auth("web")->logout();
         session()->forget('admin' . $admin->id);
         return $this->returnSuccess("you are logged-out successfully :(");
     }
