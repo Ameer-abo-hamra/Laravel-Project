@@ -46,15 +46,28 @@ class OrderController extends Controller
         }
 
         return $this->returnSuccess("your order is saved");
-        // return $order;
     }
     public function getOrders()
     {
 
         $orders = Order::get();
-        return $this->returnData("done", "orders", $orders->makeHidden("isStateModified"));
+        return $this->returnData("done", "orders", $orders->makeHidden("isStateModified")->makeVisible("id"));
     }
 
 
+    public function showOrderDetails($id)
+    {
+
+        $order = Order::find($id);
+
+
+        if ($order) {
+
+            return $this->returnData("done", "medicines", $order->medicines->makeHidden("pivot"));
+
+        }
+
+        return $this->returnError("this order does not exist");
+    }
 
 }

@@ -40,11 +40,14 @@ Route::group(['middleware' => "checkSession"], function () {
 
     Route::get("logout", [AdminController::class, "logout"]);
 
-    Route::post("search", [MedicineController::class, "search"]);
-
     Route::post('add-medicine', [MedicineController::class, "store"]);
 
+    Route::post("search", [MedicineController::class, "search"]);
+
+
     Route::get("getorders", [OrderController::class, "getOrders"]);
+
+    Route::get("order-datails/{order_id}" , [OrderController::class , 'showOrderDetails']);
 
     Route::post("changestate", [AdminController::class, 'update']);
 

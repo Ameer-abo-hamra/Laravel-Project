@@ -25,7 +25,7 @@ class ChangeState
 
         $isModified = $order->isStateModified;
         echo $isModified;
-        if (!$isModified && $order->state == "مستلمة") {
+        if (!$isModified && $order->state == "received") {
 
             Order::find($order->id)->update([
                 "isStateModified" => 1,
