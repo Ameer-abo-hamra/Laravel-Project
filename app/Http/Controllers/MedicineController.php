@@ -57,4 +57,16 @@ class MedicineController extends Controller
             return $this->returnData("", "medicine details : ", $medicine);
         }
     }
+
+
+    public function getmedicine()
+    {
+
+        $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
+
+        if (count($medicinesGroupedByCategory) != 0) {
+            return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
+        }
+        return $this->returnError("there are no categories until now");
+    }
 }

@@ -75,34 +75,18 @@ class PharmacistController extends Controller
     }
 
 
-    public function getmedicine()
-    {
-
-        $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
-
-        if (count($medicinesGroupedByCategory) != 0) {
-            return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
-        }
-        return $this->returnError("there are no categories until now");
-    }
-
-    // public function search(Request $request)
+    // public function getmedicine()
     // {
 
-    //     $med = Medicine::where("category", $request->value)->orWhere("s_name", $request->value)->get();
-    //     if (count($med) == 0) {
-    //         return $this->returnError("this medicine does not exist");
+    //     $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
+
+    //     if (count($medicinesGroupedByCategory) != 0) {
+    //         return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
     //     }
-    //     return $this->returnData("this is your product", "medicine", $med);
+    //     return $this->returnError("there are no categories until now");
     // }
 
 
-    // public function showdetails($id)
-    // {
-    //     $item = Medicine::find($id);
-    //     return $this->returnData("datails", "more informations", $item);
-
-    // }
 
 
 

@@ -5,8 +5,6 @@ use App\Http\Controllers\MedicineController;
 
 use App\Http\Controllers\OrderController;
 
-use App\Http\Controllers\AdminController;
-
 Route::post("register", [PharmacistController::class, "register"])->name("rrr");
 
 Route::post("login", [PharmacistController::class, "login"]);
@@ -15,7 +13,7 @@ Route::group(["middleware" => ["role:user,api"]], function () {
 
     Route::post("logout", [PharmacistController::class, "logout"]);
 
-    Route::get("getmedicine", [PharmacistController::class, "getmedicine"]);
+    Route::get("getmedicine", [MedicineController::class, "getmedicine"]);
 
     Route::post("search", [MedicineController::class, "search"]);
 
