@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Medicine;
 use App\Traits\GeneralTrait;
 use App\Traits\ResponseTrait;
+use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -45,5 +46,15 @@ class MedicineController extends Controller
 
         return $this->returnSuccess("your data is saved :)");
 
+    }
+
+    public function showDetails($id)
+    {
+
+        $medicine = Medicine::find($id);
+
+        if ($medicine) {
+            return $this->returnData("", "medicine details : ", $medicine);
+        }
     }
 }

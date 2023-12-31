@@ -17,9 +17,9 @@ Route::group(["middleware" => ["role:user,api"]], function () {
 
     Route::get("getmedicine", [PharmacistController::class, "getmedicine"]);
 
-    Route::post("search", [PharmacistController::class, "search"]);
+    Route::post("search", [MedicineController::class, "search"]);
 
-    Route::get("showdetails/{id}", [PharmacistController::class, "showdetails"]);
+    Route::get("showdetails/{id}", [MedicineController::class, "showDetails"]);
 
     Route::post("order", [OrderController::class, "addOrder"]);
 
@@ -31,25 +31,3 @@ Route::group(["middleware" => ["role:user,api"]], function () {
 
 
 
-Route::group(["prefix" => "web"], function () {
-
-    Route::post('add-medicine', [MedicineController::class, "store"]);
-
-    Route::post('login', [AdminController::class, "login"])->name("login");
-
-    Route::group(['middleware' => ["role:admin,web"]], function () {
-
-
-        Route::get("logout", [AdminController::class, "logout"]);
-
-        Route::post("search", [MedicineController::class, "search"]);
-
-        Route::post('add-medicine', [MedicineController::class, "store"]);
-
-        Route::get("getorders", [OrderController::class, "getOrders"]);
-
-        Route::post("changestate", [AdminController::class, 'update']);
-
-
-    });
-});

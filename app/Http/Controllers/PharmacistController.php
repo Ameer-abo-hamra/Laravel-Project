@@ -86,23 +86,23 @@ class PharmacistController extends Controller
         return $this->returnError("there are no categories until now");
     }
 
-    public function search(Request $request)
-    {
+    // public function search(Request $request)
+    // {
 
-        $med = Medicine::where("category", $request->value)->orWhere("s_name", $request->value)->get();
-        if (count($med) == 0) {
-            return $this->returnError("this medicine does not exist");
-        }
-        return $this->returnData("this is your product", "medicine", $med);
-    }
+    //     $med = Medicine::where("category", $request->value)->orWhere("s_name", $request->value)->get();
+    //     if (count($med) == 0) {
+    //         return $this->returnError("this medicine does not exist");
+    //     }
+    //     return $this->returnData("this is your product", "medicine", $med);
+    // }
 
 
-    public function showdetails($id)
-    {
-        $item = Medicine::find($id);
-        return $this->returnData("datails", "more informations", $item);
+    // public function showdetails($id)
+    // {
+    //     $item = Medicine::find($id);
+    //     return $this->returnData("datails", "more informations", $item);
 
-    }
+    // }
 
 
 

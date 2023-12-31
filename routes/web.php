@@ -44,10 +44,11 @@ Route::group(['middleware' => "checkSession"], function () {
 
     Route::post("search", [MedicineController::class, "search"]);
 
+    Route::get("show-details/{med_id}", [MedicineController::class, "showDetails"]);
 
     Route::get("getorders", [OrderController::class, "getOrders"]);
 
-    Route::get("order-datails/{order_id}" , [OrderController::class , 'showOrderDetails']);
+    Route::get("order-datails/{order_id}", [OrderController::class, 'showOrderDetails']);
 
     Route::post("changestate", [AdminController::class, 'update']);
 
