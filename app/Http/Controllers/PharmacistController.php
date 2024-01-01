@@ -93,17 +93,17 @@ class PharmacistController extends Controller
     public function getOrders($id)
     {
         $orders = Order::where("pharmacist_id", $id)->get();
-        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified", "pharmacist_id"]));
+        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified", "pharmacist_id"])->makeVisible("id"));
     }
 
     public function addToFvorite(Request $request)
     {
-/*!$phar->medicines()->where("medicine_id", "$request->medId")->exists() */
+        /*!$phar->medicines()->where("medicine_id", "$request->medId")->exists() */
         $med = Medicine::find($request->medId);
         $phar = Pharmacist::find($request->pharId);
         if ($med && $phar) {
             $medIds = $phar->medicines()->pluck("medicine_id")->toArray();
-            if (!in_array($request->medId,$medIds)) {
+            if (!in_array($request->medId, $medIds)) {
                 $phar->medicines()->attach($med, [
                     "created_at" => Carbon::now(),
                     "updated_at" => Carbon::now()
