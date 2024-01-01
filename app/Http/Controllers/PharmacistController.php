@@ -93,7 +93,7 @@ class PharmacistController extends Controller
     public function getOrders($id)
     {
         $orders = Order::where("pharmacist_id", $id)->get();
-        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified", "pharmacist_id"])->makeVisible("id"));
+        return $this->returnData('done', "orders", $orders->makeHidden(["isStateModified"])->makeVisible("id"));
     }
 
     public function addToFvorite(Request $request)
