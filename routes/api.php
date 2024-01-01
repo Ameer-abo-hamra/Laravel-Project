@@ -21,6 +21,8 @@ Route::group(["middleware" => ["role:user,api"]], function () {
 
     Route::post("order", [OrderController::class, "addOrder"]);
 
+    Route::get("order-datails/{order_id}", [OrderController::class, 'showOrderDetails']);
+
     Route::get("getorders/{pharmacist_id}", [PharmacistController::class, "getOrders"]);
 
     Route::post("add-to-favorite", [PharmacistController::class, "addToFvorite"]);
