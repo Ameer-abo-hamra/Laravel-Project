@@ -29,7 +29,6 @@ class ChangeState
 
             Order::find($order->id)->update([
                 "isStateModified" => 1,
-
             ]);
 
             $specificOrder = Order::find($order->id);

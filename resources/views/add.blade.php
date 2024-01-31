@@ -11,21 +11,22 @@
 <body>
 
     <p>اهلا </p>
-    <form action="{{route("store")}}" method="POST">
-@csrf
+    <form action="{{ route('store') }}" method="POST">
+        @csrf
         <input type="text" name="s_name" placeholder="s_name"><br><br>
-        @error("s_name")
-            <p>{{$message }}</p>
+        @error('s_name')
+            <p>{{ $message }}</p>
         @enderror
         <input type="text" name="t_name" placeholder="t_name"><br><br>
-        @error("t_name")
-        <p>{{$message }}</p>
-    @enderror
-        <input type="text" name="category" placeholder="cat"><br><br>
-        <input type="text" name="company" placeholder="company"><br><br>
-        <input type="number" name="amount" placeholder="amount"><br><br>
-        <input type="date" name="end_date" placeholder="end date"><br><br>
-        <input type="number" name="price" placeholder="price"><br><br>
+        @error('t_name')
+            <p>{{ $message }}</p>
+        @enderror
+        <input type="text" name="s_name" placeholder="seitefic name">
+        <input type="text" name="company" placeholder="company">
+        <input type="text" name="category" placeholder="cat">
+        <input type="number" name="amount" placeholder="amount">
+        <input type="date" name="end_date" placeholder="end date">
+        <input type="number" name="price" placeholder="price">
         <input type="submit">
     </form>
 </body>

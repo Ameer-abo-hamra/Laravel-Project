@@ -23,7 +23,6 @@ use App\Traits\ResponseTrait;
 Route::get("csrf-token", function () {
     return response()->json([
         'csrf_token' => csrf_token(),
-        'yousef_session' => Session::getId()
     ]);
 
 });
@@ -35,8 +34,7 @@ Route::get("go-login", function () {
 });
 Route::post('login', [AdminController::class, "login"])->name("login");
 
-Route::group(['middleware' => "checkSession"], function () {
-
+// Route::group(['middleware' => "checkSession"], function () {
 
     Route::get("logout", [AdminController::class, "logout"]);
 
@@ -55,7 +53,7 @@ Route::group(['middleware' => "checkSession"], function () {
     Route::post("changestate", [AdminController::class, 'update']);
 
 
-});
+// });
 
 
 
