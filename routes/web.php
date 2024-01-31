@@ -27,7 +27,7 @@ Route::get("csrf-token", function () {
 
 });
 
-Route::get("go-login", function () {
+Route::get("https://ameer-abo-hamra.github.io/Laravel-Project/go-login", function () {
 
 
     return view("loginAdmin");
