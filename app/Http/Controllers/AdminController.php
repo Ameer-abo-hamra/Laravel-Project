@@ -28,16 +28,16 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->returnError($validator->errors()->first());
+            return redirect()->back()->withErrors($validator->errors());
         }
         $cre = $request->only("username", "password");
         if (Auth::guard('web')->attempt($cre)) {
 
             // $admin = Auth::guard('web')->user();
             // session(['admin_data' . $admin->id => $admin->toArray()]);
-            return $this->returnSuccess("you are logged-in successfully :)");
+            return redirect()->route("home.page");
         }
-        return $this->returnError("your data is invalid");
+        return redirect()->back()->with("error", "your data not valid");
 
 
     }
@@ -49,7 +49,7 @@ class AdminController extends Controller
         $admin = Auth::guard("web")->user();
         Auth("web")->logout();
         // session()->forget('admin' . $admin->id);
-        return $this->returnSuccess("you are logged-out successfully :(");
+        return redirect()->route("llogin");
     }
 
 

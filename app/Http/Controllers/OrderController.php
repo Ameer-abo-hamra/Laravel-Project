@@ -51,7 +51,8 @@ class OrderController extends Controller
     {
 
         $orders = Order::get();
-        return $this->returnData("done", "orders", $orders->makeHidden("isStateModified")->makeVisible("id"));
+        // return $this->returnData("done", "orders", $orders->makeHidden("isStateModified")->makeVisible("id"));
+        return view("allOrders", compact('orders'));
     }
 
 

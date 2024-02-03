@@ -13,6 +13,7 @@
         "mcamara/laravel-localization": "^1.8",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^6.1",
+        "tightenco/ziggy": "^1.8",
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {

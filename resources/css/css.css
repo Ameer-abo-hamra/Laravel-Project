@@ -1,0 +1,270 @@
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       --first: #DCF2F1;
+       --second: #7FC7D9;
+       --third: #365486;
+       --fourth: #0F1035;
+   }
+
+   a {
+       text-decoration: none;
+       display: block;
+       color: inherit;
+   }
+
+   span {
+       display: block;
+   }
+
+   .btn {
+       width: fit-content;
+       padding: 4px 18px;
+       border: none;
+       background-color: var(--third);
+       color: white;
+       border-radius: 10px;
+       cursor: pointer;
+   }
+
+ 
+
+   #success {
+       margin: 10px;
+       color: #046d04;
+       background-color: #aef7ae;
+       padding: 5px;
+       border-radius: 10px;
+   }
+
+   .vaildation_error {
+       color: red;
+       margin-bottom: 10px;
+       text-align: center;
+       position: relative;
+       font-size: 17px;
+       flex-basis: 77%;
+   }
+
+   .vaildation_error::before {
+       content: "*";
+       position: absolute;
+       left: -10px;
+       top: 0;
+       color: red;
+
+   }
+
+   .unset_inputs {
+       outline: none;
+       padding: 2px 0 2px 5px;
+       border: none;
+   }
+
+   /* .alert-message {
+       width: 30%;
+   } */
+
+   .nav {
+       display: flex;
+       justify-content: space-evenly;
+       align-items: center;
+       background-color: var(--second);
+       box-shadow: 0 0 11px 0px;
+
+   }
+
+   .nav .logo img {
+       max-width: 40px;
+       cursor: pointer;
+       transition: all .3s;
+   }
+
+   .nav .logo img:hover {
+       background-color: white;
+       padding: 5px;
+       border-radius: 20px;
+   }
+
+   .nav .links {
+       flex-basis: 50%;
+   }
+
+   .nav .links ul {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+   }
+
+   .nav .links ul li {
+       list-style-type: none;
+       padding: 5px 10px;
+       background-color: var(--second);
+       color: var(--third);
+       font-size: 17px;
+       font-weight: bold;
+       transition: all 0.4s;
+       cursor: pointer;
+   }
+
+   .nav .links ul li:hover {
+       background-color: var(--third);
+       color: white;
+       border-radius: 10px;
+
+   }
+
+   .admin-login,
+   .home-page,
+   .search,
+   .add-medicine,
+   .all-medicines,
+   .all-orders {
+       min-height: 100vh;
+       /* padding: 100px 0 0; */
+       background-color: var(--first);
+   }
+
+   .form {
+       box-shadow: 0 0 11px 0px;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       height: 60vh;
+       background-color: var(--second);
+       width: 50%;
+       padding: 40px 0;
+       border-radius: 20px;
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+   }
+
+   .form input {
+       width: 50%;
+   }
+
+   .form h2 {
+       color: var(--fourth);
+   }
+
+   .form form {
+       flex: 1;
+       display: flex;
+       flex-direction: column;
+       justify-content: space-around;
+       align-items: center;
+       width: 90%;
+   }
+
+   .form form>div {
+       width: 80%;
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-between;
+   }
+
+   .form form>div label {
+       background-color: var(--first);
+       width: 30%;
+       text-align: center;
+       color: var(--fourth);
+   }
+
+   .items {
+       padding: 10px 0 0 25px;
+   }
+
+   .items>h2 {
+       position: relative;
+       width: fit-content;
+       padding: 0 10px;
+   }
+
+   .items>h2::before {
+       content: "";
+       position: absolute;
+       width: 20px;
+       height: 20px;
+       background-color: var(--third);
+       border-radius: 50%;
+       left: -20px;
+       top: 2px;
+   }
+
+   .items>h2::after {
+       content: "";
+       position: absolute;
+       width: 2px;
+       height: 100%;
+       background-color: var(--third);
+       left: 2px;
+       top: 0;
+   }
+
+   .search .items,
+   .parent {
+       margin: 20px 0;
+       display: grid;
+       grid-template-columns: repeat(3, minmax(250px, 1fr));
+       gap: 20px;
+       padding: 0 20px;
+   }
+
+   .search .items .medicine,
+   .parent .medicine {
+       background-color: var(--second);
+       padding: 10px;
+       color: var(--first);
+       border-radius: 10px;
+       box-shadow: 0 0 7px 0 var(--fourth);
+   }
+
+   .search .items .medicine h3,
+   .parent .medicine h3 {
+       text-align: center;
+       margin-bottom: 10px;
+       color: #030089;
+       font-size: 25px;
+   }
+
+   .search .items .medicine .det,
+   .parent .medicine .det {
+       display: flex;
+       justify-content: space-between;
+       background-color: var(--first);
+       padding: 5px 10px;
+       margin-bottom: 14px;
+       border-radius: 2px;
+       color: var(--fourth);
+   }
+
+   .search .items .medicine p,
+   .parent .medicine p {
+       font-size: 17px;
+   }
+
+   .all-orders table {
+       width: 100%;
+       margin: 20px 0;
+       border: 1px solid var(--fourth);
+   }
+
+   .all-orders table thead {
+
+       text-align: left;
+       background-color: var(--fourth);
+       color: var(--first);
+   }
+
+   .all-orders table thead th {
+       padding: 5px;
+   }
+
+
+   .all-orders table tr td {
+       background-color: var(--second);
+       padding: 5px;
+   }

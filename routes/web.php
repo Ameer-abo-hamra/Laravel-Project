@@ -27,33 +27,38 @@ Route::get("csrf-token", function () {
 
 });
 
-Route::get("https://ameer-abo-hamra.github.io/Laravel-Project/go-login", function () {
+Route::get("/", function () {
+    return view("AdminLogin");
+})->name("llogin");
 
-
-    return view("loginAdmin");
-});
 Route::post('login', [AdminController::class, "login"])->name("login");
 
-// Route::group(['middleware' => "checkSession"], function () {
+Route::group(['middleware' => "checkSession"], function () {
 
-    Route::get("logout", [AdminController::class, "logout"]);
+    Route::get("home-page", function () {
+        return view("HomePage");
+    })->name("home.page");
 
-    Route::post('add-medicine', [MedicineController::class, "store"]);
 
-    Route::post("search", [MedicineController::class, "search"]);
+    Route::get('logout', [AdminController::class, "logout"])->name("logout");
+    Route::get("add-medicine", function () {
+        return view("AddMedicine");
+    });
+    Route::post('add-medicine', [MedicineController::class, "store"])->name("add.medicine");
 
-    Route::get("all-medicine", [MedicineController::class, "getmedicine"]);
+    Route::post("search", [MedicineController::class, "search"])->name("search");
+
+    Route::get("all-medicine", [MedicineController::class, "getmedicine"])->name("all");
 
     Route::get("show-details/{med_id}", [MedicineController::class, "showDetails"]);
 
-    Route::get("getorders", [OrderController::class, "getOrders"]);
+    Route::get("getorders", [OrderController::class, "getOrders"])->name("get.orders");
 
     Route::get("order-datails/{order_id}", [OrderController::class, 'showOrderDetails']);
 
     Route::post("changestate", [AdminController::class, 'update']);
 
-
-// });
+});
 
 
 

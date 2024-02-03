@@ -15,11 +15,8 @@ class MedicineController extends Controller
     public function search(Request $request)
     {
 
-        $med = Medicine::where("category", $request->value)->orWhere("s_name", $request->value)->get();
-        if (count($med) == 0) {
-            return $this->returnError("this medicine does not exist");
-        }
-        return $this->returnData("this is your product", "medicine", $med);
+        $med = Medicine::where("category", "like", "%" . $request->value . "%")->orWhere("s_name", $request->value)->get();
+        return view("searchPage", compact("med"));
     }
 
     public function store(Request $request)
@@ -38,13 +35,13 @@ class MedicineController extends Controller
 
         if ($validator->fails()) {
 
-            return $this->returnError($validator->errors()->first());
+            return redirect()->back()->with("error", $validator->errors()->first());
         }
 
 
         $this->addMedicine($request->all());
 
-        return $this->returnSuccess("your data is saved :)");
+        return redirect()->back()->with("success", "your medicine is saved");
 
     }
 
@@ -63,10 +60,10 @@ class MedicineController extends Controller
     {
 
         $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
-
-        if (count($medicinesGroupedByCategory) != 0) {
-            return $this->returnData("done", "categories", $medicinesGroupedByCategory->makeVisible("id"));
-        }
-        return $this->returnError("there are no categories until now");
+        // return response()->json([
+        //     "data" => $medicinesGroupedByCategory
+        // ])
+            return view("allMedicines" ,compact("medicinesGroupedByCategory"));
+        ;
     }
 }
