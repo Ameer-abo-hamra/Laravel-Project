@@ -55,30 +55,19 @@ class AdminController extends Controller
 
     public function update(Request $request)
     {
-        $order = Order::findOrFail($request->id);
+        // return $request;
+        $order = Order::find($request->id);
+        $order->update([
+            "payed" => $request->payed,
+            "state" => $request->state
+        ]);
 
-        if ($request->has(["payed", "state"])) {
-            $order->update([
-                "payed" => $request->payed,
-                "state" => $request->state
-            ]);
+        $orders = Order::get();
+        // $msg = "your";
+        return view("allOrders")->with([
+            "orders" => $orders,
+            "key" => "updated"
+        ]);
 
-            return $this->returnSuccess("from tow inputs");
-        } else if ($request->has(["payed"])) {
-            $order->update([
-                "payed" => $request->payed,
-            ]);
-
-            return $this->returnSuccess("from payed ");
-        }
-        if ($request->has(["state"])) {
-            $order->update([
-                "state" => $request->state
-            ]);
-
-            return $this->returnSuccess("from state ");
-        }
-
-        return $this->returnError("there are a few errors ");
     }
 }

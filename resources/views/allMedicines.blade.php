@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['resources/css/css.css', 'resources/js/test.js'])
+    @vite(['resources/css/css.css', 'resources/js/test.js', 'resources/css/media.css', 'resources/css/font/css/all.css'])
     @routes
 </head>
 
@@ -18,11 +18,12 @@
                 <img src="{{ url('/images/favicon.png') }}" alt="" id="logo">
             </div>
             <div class="links">
-                <ul>
+                <i class="fa-solid fa-bars" id="icon"></i>
+                <ul id="links">
                     <li><a href="{{ route('add.medicine') }}"> add medicine</a></li>
                     <li><a href="{{ route('all') }}"> all medicines</a></li>
                     <li><a href="{{ route('get.orders') }}"> get orders</a></li>
-                    <li><a href="{{ route('logout') }}"> logout</a></li>
+                    <li><a href="{{ route('logout') }}" id="logout"> logout</a></li>
                     <li><a href="{{ route('home.page') }}"> Home</a></li>
                 </ul>
             </div>

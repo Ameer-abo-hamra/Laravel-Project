@@ -28,7 +28,7 @@
        cursor: pointer;
    }
 
- 
+
 
    #success {
        margin: 10px;
@@ -89,6 +89,10 @@
 
    .nav .links {
        flex-basis: 50%;
+   }
+
+   .nav .links>i {
+       display: none;
    }
 
    .nav .links ul {
@@ -206,11 +210,11 @@
 
    .search .items,
    .parent {
-       margin: 20px 0;
-       display: grid;
-       grid-template-columns: repeat(3, minmax(250px, 1fr));
-       gap: 20px;
-       padding: 0 20px;
+    margin: 20px 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px 20px;
    }
 
    .search .items .medicine,
@@ -244,6 +248,16 @@
    .search .items .medicine p,
    .parent .medicine p {
        font-size: 17px;
+   }
+
+   .orders>h2 {
+       text-align: center;
+       margin: 10px auto;
+       background-color: #47c547;
+       width: fit-content;
+       border-radius: 10px;
+       padding: 5px;
+       color: var(--first);
    }
 
    .all-orders table {
