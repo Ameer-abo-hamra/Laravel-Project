@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="search">
         <div class="nav">
             <div class="logo">
@@ -36,19 +37,20 @@
         </div>
         @if (count($med) == 0)
             <h2
-                style="    text-align: center;
-            margin-top: 20px;
-            background-color: var(--third);
-            color: var(--first);
-            padding: 10px;
-            width: fit-content;
-            margin: 40px auto;
-            border-radius : 10px">
+                style=" text-align: center;
+                    margin-top: 20px;
+                    background-color: var(--third);
+                    color: var(--first);
+                    padding: 10px;
+                    width: fit-content;
+                    margin: 40px auto;
+                    border-radius : 10px">
                 there are no medicines matched with your search .. try another words</h2>
         @else
             <div class="items">
                 @foreach ($med as $m)
                     <div class="medicine">
+                      <div class="top">
                         <h3> {{ $m->t_name }}</h3>
                         <div class="det">
                             <p>
@@ -80,7 +82,18 @@
                             </p>
                             <span>{{ $m->company }}</span>
                         </div>
+                      </div>
+                      <div class="bottom">
+                        <ul>
+                            <li><a href="" class="btn update">
+                             update
+                            </a></li>
+                            <li><a href="{{route("delete", $m->id)}}" class="btn delete">
+                             delete
+                            </a></li>
 
+                        </ul>
+                      </div>
                     </div>
                 @endforeach
         @endif

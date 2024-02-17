@@ -8,15 +8,21 @@ use App\Traits\ResponseTrait;
 use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class MedicineController extends Controller
 {
     use GeneralTrait, ResponseTrait;
+    protected $search = "";
     public function search(Request $request)
     {
-
-        $med = Medicine::where("category", "like", "%" . $request->value . "%")->orWhere("s_name", $request->value)->get();
-        return view("searchPage", compact("med"));
+        $this->search = $request->value;
+        $med = Medicine::where("category", "like", "%" . $request->value . "%")->orWhere("s_name", "like", "%" . $request->value . "%")->get();
+        // return view("searchPage", compact("med"));
+        if (count($med) != 0) {
+            return $this->returnData('done', "medicines", $med);
+        }
+        return $this->returnError("there are no medicine matched with your saerch", );
     }
 
     public function store(Request $request)
@@ -63,7 +69,13 @@ class MedicineController extends Controller
         // return response()->json([
         //     "data" => $medicinesGroupedByCategory
         // ])
-            return view("allMedicines" ,compact("medicinesGroupedByCategory"));
+        return view("allMedicines", compact("medicinesGroupedByCategory"));
         ;
+    }
+
+    public function delete($id)
+    {
+        Medicine::find($id)->delete();
+        // return Redirect::route('your-route')->with($this->search);
     }
 }

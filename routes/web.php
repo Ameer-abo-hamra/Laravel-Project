@@ -48,6 +48,8 @@ Route::group(['middleware' => "checkSession"], function () {
 
     Route::post("search", [MedicineController::class, "search"])->name("search");
 
+    Route::get("delete-medicine/{id}" , [MedicineController::class , "delete"])->name('delete');
+
     Route::get("all-medicine", [MedicineController::class, "getmedicine"])->name("all");
 
     Route::get("show-details/{med_id}", [MedicineController::class, "showDetails"]);

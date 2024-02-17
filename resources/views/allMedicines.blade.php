@@ -47,38 +47,50 @@
                     <div class="parent">
                         @foreach ($value as $arr)
                             <div class="medicine">
-                                <h3> {{ $arr->t_name }}</h3>
-                                <div class="det">
-                                    <p>
-                                        The scientific name is :
-                                    </p>
-                                    <span>{{ $arr->s_name }}</span>
-                                </div>
-                                <div class="det">
-                                    <p>
-                                        price :
-                                    </p>
-                                    <span> {{ $arr->price }}</span>
-                                </div>
-                                <div class="det">
-                                    <p>
-                                        amount :
-                                    </p>
-                                    <span>{{ $arr->amount }}</span>
-                                </div>
-                                <div class="det">
-                                    <p>
-                                        category :
-                                    </p>
-                                    <span>{{ $arr->category }}</span>
-                                </div>
-                                <div class="det">
-                                    <p>
-                                        company :
-                                    </p>
-                                    <span>{{ $arr->company }}</span>
-                                </div>
+                          <div class="top">
+                            <h3> {{ $arr->t_name }}</h3>
+                            <div class="det">
+                                <p>
+                                    The scientific name is :
+                                </p>
+                                <span>{{ $arr->s_name }}</span>
+                            </div>
+                            <div class="det">
+                                <p>
+                                    price :
+                                </p>
+                                <span> {{ $arr->price }}</span>
+                            </div>
+                            <div class="det">
+                                <p>
+                                    amount :
+                                </p>
+                                <span>{{ $arr->amount }}</span>
+                            </div>
+                            <div class="det">
+                                <p>
+                                    category :
+                                </p>
+                                <span>{{ $arr->category }}</span>
+                            </div>
+                            <div class="det">
+                                <p>
+                                    company :
+                                </p>
+                                <span>{{ $arr->company }}</span>
+                            </div>
+                          </div>
+                                <div class="bottom">
+                                    <ul>
+                                        <li><a href="" class="btn update">
+                                         update
+                                        </a></li>
+                                        <li><a href="" class="btn delete">
+                                         delete
+                                        </a></li>
 
+                                    </ul>
+                                  </div>
                             </div>
                         @endforeach
                     </div>
