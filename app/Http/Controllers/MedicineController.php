@@ -61,16 +61,50 @@ class MedicineController extends Controller
         }
     }
 
+    public function onemedicine($id)
+    {
+
+        $med = Medicine::findOrFail($id);
+
+        return $this->returnData("", "medicine", $med);
+
+    }
+
+    public function updateMedicine(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            "s_name" => "unique:medicines,s_name," . $request->id . "|required",
+            "t_name" => "unique:medicines,t_name," . $request->id . "|required",
+            "category" => "required",
+            "company" => "required",
+            "amount" => "required|numeric|integer",
+            "end_date" => "required|date",
+            "price" => "required|numeric|min:1"
+        ]);
+
+        if ($validator->fails()) {
+            return $this->returnError($validator->errors()->first(), 403);
+        }
+        Medicine::find($request->id)->update([
+            "s_name" => $request->s_name,
+            "t_name" => $request->t_name,
+            "category" => $request->category,
+            "company" => $request->company,
+            "amount" => $request->amount,
+            "end_date" => $request->end_date,
+            "price" => $request->price,
+        ]);
+
+        return $this->returnSuccess("your data is updated succesffuly");
+    }
 
     public function getmedicine()
     {
 
         $medicinesGroupedByCategory = Medicine::get()->groupBy("category");
-        // return response()->json([
-        //     "data" => $medicinesGroupedByCategory
-        // ])
+        // return $this->returnData("ladkg", "data", $medicinesGroupedByCategory);
         return view("allMedicines", compact("medicinesGroupedByCategory"));
-        ;
     }
 
     public function delete($id)

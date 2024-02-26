@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
     protected $fillable = ["pharmacist_id", "price", "state", "payed", "isStateModified"];
 
-    protected $hidden = ['created_at', "updated_at", "id"];
+    protected $hidden = ["updated_at"];
 
     public function pharmacist()
     {
@@ -23,7 +23,7 @@ class Order extends Model
     public function medicines()
     {
 
-        return $this->belongsToMany(Medicine::class,"_order__medicine");
+        return $this->belongsToMany(Medicine::class, "_order__medicine");
 
     }
 

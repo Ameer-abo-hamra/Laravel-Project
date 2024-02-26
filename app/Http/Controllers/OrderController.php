@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\addOrder;
 use App\Models\Medicine;
 use App\Models\OrderMid;
 use App\Traits\ResponseTrait;
@@ -21,7 +22,7 @@ class OrderController extends Controller
     {
         $amounts = array_filter($request->quan);
         $ids = $request->medicine_Ids;
-        $price = 0;
+        $price = 0; 
         for ($i = 0; $i < count($amounts); $i++) {
             $currnetPrice = Medicine::find($ids[$i])->price;
             $price += $currnetPrice * $amounts[$i];
@@ -45,12 +46,14 @@ class OrderController extends Controller
             ]);
         }
 
+        broadcast(new addOrder($order));
+
         return $this->returnSuccess("your order is saved");
     }
     public function getOrders()
     {
 
-        $orders = Order::get();
+        $orders = Order::latest("id")->get();
         // return $this->returnData("done", "orders", $orders->makeHidden("isStateModified")->makeVisible("id"));
         return view("allOrders", compact('orders'));
     }

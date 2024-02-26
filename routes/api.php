@@ -10,7 +10,7 @@ Route::post("register", [PharmacistController::class, "register"]);
 
 Route::post("login", [PharmacistController::class, "login"]);
 
-// Route::group(["middleware" => ["role:user,api"]], function () {
+Route::group(["middleware" => ["role:user,api"]], function () {
 
     Route::post("logout", [PharmacistController::class, "logout"]);
 
@@ -28,7 +28,7 @@ Route::post("login", [PharmacistController::class, "login"]);
 
     Route::post("add-to-favorite", [PharmacistController::class, "addToFvorite"]);
 
-// });
+});
 
 
 

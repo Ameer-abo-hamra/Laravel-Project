@@ -55,6 +55,7 @@ window.addEventListener("resize", function () {
 });
 window.addEventListener("load", function () {
     if (this.window.innerWidth < 786) {
+        console.log(this.window.innerWidth);
         bar.style.cssText = `
         position: absolute;
         display: none;
@@ -67,6 +68,8 @@ window.addEventListener("load", function () {
         top: 20px
         `;
     } else {
+        console.log(this.window.innerWidth);
+
         bar.style.cssText = `
         display: flex;
         align-items: center;

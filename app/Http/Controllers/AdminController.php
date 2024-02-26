@@ -62,12 +62,16 @@ class AdminController extends Controller
             "state" => $request->state
         ]);
 
-        $orders = Order::get();
         // $msg = "your";
-        return view("allOrders")->with([
-            "orders" => $orders,
-            "key" => "updated"
+        // return view("allOrders")->with([
+        //     "orders" => $orders,
+        //     "key" => "updated"
+        // ]);
+        return response()->json([
+
+            "data" => "hi"
         ]);
+        // return $this->returnData("your data is updated","order",$order);
 
     }
 }

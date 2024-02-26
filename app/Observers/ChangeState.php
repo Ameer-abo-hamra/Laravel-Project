@@ -24,7 +24,6 @@ class ChangeState
     {
 
         $isModified = $order->isStateModified;
-        echo $isModified;
         if (!$isModified && $order->state == "received") {
 
             Order::find($order->id)->update([

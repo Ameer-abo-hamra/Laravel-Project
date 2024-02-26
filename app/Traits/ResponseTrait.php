@@ -33,7 +33,6 @@ trait ResponseTrait
             "statusNumber" => $responseNumber,
             "$key" => $data,
         ]);
-
     }
     public function returnValidate()
     {

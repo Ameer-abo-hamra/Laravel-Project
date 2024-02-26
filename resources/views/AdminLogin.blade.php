@@ -19,7 +19,7 @@
             <h2> Welcome Admin </h2>
             <div class="alert-message">
                 @if (Session('error'))
-                    <p  class="vaildation_error" id="not-valid"> {{ session('error') }} </p>
+                    <p class="vaildation_error" id="not-valid"> {{ session('error') }} </p>
                 @endif
                 @if (Session('unauth'))
                     <p class="vaildation_error" id="not-valid"> {{ session('unauth') }} </p>
@@ -32,14 +32,16 @@
                         <p class="vaildation_error"> {{ $message }} </p>
                     @enderror
                     <label for="username">username</label>
-                    <input class="unset_inputs" type="text" id="username" name="username" value="{{ old('username') }}">
+                    <input class="unset_inputs" type="text" id="username" name="username"
+                        value="{{ old('username') }}">
                 </div>
                 <div class="password">
                     @error('password')
                         <p class="vaildation_error">{{ $message }}</p>
                     @enderror
                     <label for="password">password</label>
-                    <input class="unset_inputs" type="password" name="password" id="password" value="{{ old('password') }}">
+                    <input class="unset_inputs" type="password" name="password" id="password"
+                        value="{{ old('password') }}">
                 </div>
                 <input type="submit" value="login" class="btn">
             </form>

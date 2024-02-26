@@ -48,9 +48,13 @@ Route::group(['middleware' => "checkSession"], function () {
 
     Route::post("search", [MedicineController::class, "search"])->name("search");
 
-    Route::get("delete-medicine/{id}" , [MedicineController::class , "delete"])->name('delete');
+    Route::get("delete-medicine/{id}", [MedicineController::class, "delete"])->name('delete');
 
     Route::get("all-medicine", [MedicineController::class, "getmedicine"])->name("all");
+
+    Route::get('one-medicine/{id}', [MedicineController::class, "onemedicine"])->name("one.medicine");
+
+    Route::post("update-medicine" , [MedicineController::class , "updateMedicine"])->name("update.medicine");
 
     Route::get("show-details/{med_id}", [MedicineController::class, "showDetails"]);
 
@@ -58,7 +62,7 @@ Route::group(['middleware' => "checkSession"], function () {
 
     Route::get("order-datails/{order_id}", [OrderController::class, 'showOrderDetails']);
 
-    Route::post("changestate", [AdminController::class, 'update']);
+    Route::post("changestate", [AdminController::class, 'update'])->name("update.order");
 
 });
 
